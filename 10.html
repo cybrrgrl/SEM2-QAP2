@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iNaturalist URL Builder</title>
+</head>
+<body>
+
+    <h1>iNaturalist API URL Builder</h1>
+
+    <form id="urlForm">
+        <label for="query">Query (e.g., 'Monarch Butterfly'):</label><br>
+        <input type="text" id="query" name="query" required><br><br>
+        
+        <label for="order">Order (ascending/descending):</label><br>
+        <input type="text" id="order" name="order" required><br><br>
+
+        <label for="count">Count (1-50):</label><br>
+        <input type="number" id="count" name="count" min="1" max="50" required><br><br>
+
+        <label for="license">License (e.g., 'cc-by'):</label><br>
+        <input type="text" id="license" name="license" required><br><br>
+
+        <button type="submit">Generate URL</button>
+    </form>
+
+    <h3>Generated URL:</h3>
+    <p id="generatedUrl"></p>
+
+    <script src="10.js"></script>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById('urlForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Retrieve input values
+            const query = document.getElementById('query').value;
+            const order = document.getElementById('order').value;
+            const count = parseInt(document.getElementById('count').value, 10);
+            const license = document.getElementById('license').value;
+
+            try {
+                // Generate the URL using the buildUrl function from the external script
+                const url = buildUrl(query, order, count, license);
+                // Display the generated URL
+                document.getElementById('generatedUrl').textContent = url;
+            } catch (error) {
+                // Display error message if an error occurs
+                document.getElementById('generatedUrl').textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+
+</body>
+</html>

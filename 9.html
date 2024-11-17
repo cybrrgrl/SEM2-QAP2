@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boolean Value Checker</title>
+</head>
+<body>
+  <h1>Check Boolean Values</h1>
+  
+  <p>Enter values to check if all, any, or none of them are true:</p>
+
+  <form id="form">
+    <label for="values">Enter values (comma-separated):</label>
+    <input type="text" id="values" placeholder="Y, yes, 1, no, false, etc.">
+    <button type="button" onclick="checkValues()">Check</button>
+  </form>
+
+  <script src="9pt2.js"></script>
+
+  <script>
+    function checkValues() {
+      const input = document.getElementById('values').value;
+      const valuesArray = input.split(',').map(value => value.trim());
+
+      console.log('Input values:', valuesArray);
+      
+      // Call the functions and log the results to the console
+      console.log('Result for every():', every(...valuesArray));
+      console.log('Result for any():', any(...valuesArray));
+      console.log('Result for none():', none(...valuesArray));
+    }
+  </script>
+</body>
+</html>
